@@ -2,7 +2,7 @@
 
 | Day | Source | Test | Guide | Python | Status |
 | --- | --- | --- | --- | --- | --- |
-| day00 | `src/day00.ml` | `test/day00_tests.ml` | `Problem_Statements/days/day00_function_guide.md` | `python/day00.py` | scaffolded |
+| day00 | `src/day00.ml` | `test/day00_tests.ml` | `Problem_Statements/days/day00_function_guide.md` | `python/day00.py` | solved (dry run: 3481005 / 5218616) |
 | day01 | `src/day01.ml` | `test/day01_tests.ml` | `Problem_Statements/days/day01_function_guide.md` | `python/day01.py` | scaffolded |
 | day02 | `src/day02.ml` | `test/day02_tests.ml` | `Problem_Statements/days/day02_function_guide.md` | `python/day02.py` | scaffolded |
 | day03 | `src/day03.ml` | `test/day03_tests.ml` | `Problem_Statements/days/day03_function_guide.md` | `python/day03.py` | scaffolded |

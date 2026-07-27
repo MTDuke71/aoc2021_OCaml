@@ -1,1 +1,3 @@
-include Day_stub.Make (struct let day = "day12" end)
+include Day_stub.Make (struct
+  let day = "day12"
+end)

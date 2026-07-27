@@ -1,11 +1,8 @@
 let usage () =
-  Printf.eprintf
-    "Usage: dune exec ./bin/main.exe -- dayNN [input-path]\n\nDefault input path: inputs/dayNN.txt\n";
+  Printf.eprintf "Usage: dune exec ./bin/main.exe -- dayNN [input-path]\n\nDefault input path: inputs/dayNN.txt\n";
   exit 1
 
-let load_input path =
-  try Ok (Aoc2021.Io.read_file path) with
-  | Sys_error message -> Error message
+let load_input path = try Ok (Aoc2021.Io.read_file path) with Sys_error message -> Error message
 
 let run day input_path =
   match Aoc2021.Day_registry.find day with
@@ -16,9 +13,7 @@ let run day input_path =
       match load_input input_path with
       | Error message ->
           Printf.eprintf "Could not read %s: %s\n" input_path message;
-          Printf.eprintf
-            "Create %s locally (it is gitignored) or pass an explicit path.\n"
-            input_path;
+          Printf.eprintf "Create %s locally (it is gitignored) or pass an explicit path.\n" input_path;
           exit 1
       | Ok raw ->
           let parsed = entry.parse_input raw in

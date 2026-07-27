@@ -1,0 +1,3 @@
+# Tutorial examples are hand-formatted for teaching (comment banners, aligned
+# bindings, deliberate spacing). Keep ocamlformat out of them.
+tutorial/**/*.ml

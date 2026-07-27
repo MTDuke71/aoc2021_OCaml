@@ -34,9 +34,8 @@ let () =
       try
         run ();
         Printf.printf "ok %s\n" day
-      with
-      | exn ->
-          Printf.eprintf "FAILED %s: %s\n" day (Printexc.to_string exn);
-          raise exn)
+      with exn ->
+        Printf.eprintf "FAILED %s: %s\n" day (Printexc.to_string exn);
+        raise exn)
     suites;
   Printf.printf "Ran %d scaffold day tests\n" (List.length suites)

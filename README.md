@@ -111,6 +111,25 @@ Run the timing harness:
 dune exec ./bench/main.exe -- day01 /tmp/day01.txt
 ```
 
+Run the Python cross-check reference for the same day:
+
+```bash
+python3 python/day01.py /tmp/day01.txt
+```
+
+Like `bin/main.exe`, it falls back to `inputs/dayNN.txt` when no path is given.
+
+Format the OCaml sources (`dune fmt` rewrites files in place; `dune build @fmt`
+only reports differences):
+
+```bash
+dune fmt
+```
+
+Style is pinned in `.ocamlformat` (profile `default`, margin 120). Files under
+`tutorial/` are exempt via `.ocamlformat-ignore` so their hand-formatted teaching
+layout survives.
+
 ## Mapping from `aoc2020_Prolog`
 
 - `src/dayNN.pl` -> `src/dayNN.ml`

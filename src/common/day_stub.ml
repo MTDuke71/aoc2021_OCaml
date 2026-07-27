@@ -8,7 +8,6 @@ module Make (Config : Config) = struct
   type parsed = string list
 
   let parse_input = Io.nonempty_lines
-
   let part1 _ = Printf.sprintf "TODO: %s part1" Config.day
   let part2 _ = Printf.sprintf "TODO: %s part2" Config.day
 

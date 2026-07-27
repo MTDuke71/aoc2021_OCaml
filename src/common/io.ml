@@ -6,8 +6,4 @@ let read_file path =
       let length = in_channel_length channel in
       really_input_string channel length)
 
-let nonempty_lines raw =
-  raw
-  |> String.split_on_char '
-'
-  |> List.filter (fun line -> String.trim line <> "")
+let nonempty_lines raw = raw |> String.split_on_char '\n' |> List.filter (fun line -> String.trim line <> "")

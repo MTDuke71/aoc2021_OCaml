@@ -1,8 +1,7 @@
 let failf fmt = Printf.ksprintf failwith fmt
 
 let check_equal label expected actual =
-  if actual <> expected then
-    failf "%s: expected %S but got %S" label expected actual
+  if actual <> expected then failf "%s: expected %S but got %S" label expected actual
 
 let check_lines day lines =
   if lines <> [ "alpha"; "beta" ] then

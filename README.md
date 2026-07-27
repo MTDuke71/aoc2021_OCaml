@@ -40,17 +40,22 @@ fluency and transferable problem solving, not deep specialization in one languag
 - Name algorithms in standard literature terms so techniques transfer.
 - If syntax frustration appears, pivot back to algorithmic structure.
 
-## Project shape (target)
+## Project shape (scaffold)
 
 ```text
 aoc2021_OCaml/
+  bin/
+    main.ml
   tutorial/
     day1/ ... day11/
   src/
     day00.ml .. day25.ml
     common/
+      day_stub.ml
+      io.ml
   test/
     day00_tests.ml .. day25_tests.ml
+    main.ml
   bench/
     main.ml
   Problem_Statements/
@@ -61,14 +66,60 @@ aoc2021_OCaml/
   python/
     dayNN.py
   inputs/
-    dayNN.txt
+    README.md
+  dune-project
 ```
 
 Notes:
 
 - Keep one main source file per day in `src/`.
 - Use `dune` as the default build/test runtime unless explicitly changed.
-- Use an OCaml test framework (`alcotest` or `ounit2`) consistently across days.
+- Mirror the Prolog repo's discoverable top-level day layout, but use dune-friendly OCaml modules
+  and executables for the actual entry points.
+- Keep personal Advent of Code inputs as local `inputs/dayNN.txt` files; those filenames are
+  intentionally gitignored.
+
+## Scaffold commands
+
+Build everything:
+
+```bash
+dune build
+```
+
+Run the scaffold tests:
+
+```bash
+dune runtest
+```
+
+Run a day stub against the default input path:
+
+```bash
+dune exec ./bin/main.exe -- day01
+```
+
+Run a day stub against an explicit file:
+
+```bash
+dune exec ./bin/main.exe -- day01 /tmp/day01.txt
+```
+
+Run the timing harness:
+
+```bash
+dune exec ./bench/main.exe -- day01 /tmp/day01.txt
+```
+
+## Mapping from `aoc2020_Prolog`
+
+- `src/dayNN.pl` -> `src/dayNN.ml`
+- `test/dayNN_tests.pl` -> `test/dayNN_tests.ml`
+- `bench/main.pl` -> `bench/main.ml`
+- `tutorial/dayN/` remains `tutorial/dayN/`
+- `Problem_Statements/days/` remains `Problem_Statements/days/`
+- `python/dayNN.py` remains `python/dayNN.py`
+- `inputs/dayNN.txt` remains the local input-file convention
 
 ## Per-day deliverable
 

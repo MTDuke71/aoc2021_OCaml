@@ -1,0 +1,3 @@
+(test
+ (name main)
+ (libraries aoc2021))

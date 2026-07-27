@@ -1,0 +1,31 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.vscode/
+
+# dune / OCaml build artifacts
+_build/
+*.install
+*.a
+*.o
+*.obj
+*.annot
+*.cmi
+*.cmo
+*.cmx
+*.cmxa
+*.cma
+*.cmt
+*.cmti
+*.exe
+.merlin
+
+# Local package manager state
+.opam/
+
+# Puzzle inputs (keep structure, not personal AoC data)
+/inputs/*.txt
+!/inputs/.gitkeep
+!/inputs/README.md

@@ -79,6 +79,29 @@ Notes:
 - Keep personal Advent of Code inputs as local `inputs/dayNN.txt` files; those filenames are
   intentionally gitignored.
 
+## Fetching problem statements and inputs
+
+Both scripts live in `scripts/` and resolve paths from their own location, so they
+always write into this repo. Get your `session` cookie from a logged-in
+adventofcode.com browser session (DevTools -> Application/Storage -> Cookies).
+
+```powershell
+$env:AOC_SESSION = "your_session_cookie_here"
+.\scripts\download_aoc2021_problems.ps1
+.\scripts\convert_aoc2021_html_to_md.ps1 -RemoveHtml
+```
+
+- Statements land as `Problem_Statements\days\dayNN.html`, then convert to
+  `dayNN.md`. The `.html` files are gitignored intermediates.
+- Inputs land as `inputs\dayNN.txt` (gitignored, never committed).
+- The converter overwrites the scaffold's placeholder `dayNN.md` files freely but
+  refuses to clobber a real statement without `-Overwrite`.
+- A day page only contains Part Two once you've solved Part One on that account,
+  so re-run both scripts with `-Overwrite` later to pick up Part Two text.
+
+Useful flags: `-StartDay`/`-EndDay` to work a range, `-ProblemsOnly` /
+`-InputsOnly` to fetch just one kind.
+
 ## Scaffold commands
 
 Build everything:

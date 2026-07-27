@@ -33,3 +33,6 @@ __pycache__/
 /inputs/*.txt
 !/inputs/.gitkeep
 !/inputs/README.md
+
+# Raw problem-statement downloads (intermediate; converted to dayNN.md)
+/Problem_Statements/days/*.html

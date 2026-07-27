@@ -290,11 +290,13 @@ To run it directly with the OCaml interpreter:
 ocaml tutorial/day1/example.ml
 ```
 
-Or compile and run with dune from the repo root (if a `dune` file is present in the directory):
+Or compile and run it with dune from the repo root:
 
 ```bash
 dune exec tutorial/day1/example.exe
 ```
+
+Both produce the same output. The interpreter is quicker for scratch experiments; the dune build type-checks the example as part of `dune build`. Each tutorial day that ships an `example.ml` needs a `dune` file beside it declaring `(executable (name example))`.
 
 ---
 

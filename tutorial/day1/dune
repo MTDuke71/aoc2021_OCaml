@@ -1,0 +1,6 @@
+; Tutorial examples are standalone teaching programs, not part of the aoc2021
+; library. Building them here keeps `dune exec tutorial/dayN/example.exe`
+; working and type-checks the examples as part of `dune build`.
+
+(executable
+ (name example))

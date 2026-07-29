@@ -225,6 +225,43 @@ let rec zip a b =
 
 The or-pattern works here precisely because neither alternative binds a name.
 
+### `'a` and `'b` are type variables, not lifetimes
+
+Your editor will show an inferred type above `zip`:
+
+```ocaml
+val zip : 'a list -> 'b list -> ('a * 'b) list
+```
+
+If you are coming from Rust, `'a` looks alarmingly like a lifetime. It is not. **OCaml has no lifetimes at all** — it is garbage-collected, with no ownership and no borrow checker. The two languages just happen to spell different things with the same apostrophe:
+
+| Concept | Rust | OCaml |
+|---|---|---|
+| Generic type parameter | `<T>`, `<A, B>` | `'a`, `'b` |
+| Lifetime | `'a` | does not exist |
+
+So `'a` (say "tick a") is what Rust writes as `<T>`. The signature above is Rust's:
+
+```rust
+fn zip<A, B>(a: Vec<A>, b: Vec<B>) -> Vec<(A, B)>
+```
+
+This is also why `let bigger = 0 :: small` back in Part 1 shares memory with no annotation anywhere — there is nothing to annotate.
+
+Note that you never wrote `<A, B>`. Inference derived it, and derived the *most general* type your code allows. The contrast across this day's functions shows exactly how that works:
+
+| Inferred signature | Generic? | Why |
+|---|---|---|
+| `length : 'a list -> int` | yes | never looks at an element, only counts |
+| `describe : 'a list -> string` | yes | only inspects the list's shape |
+| `sum : int list -> int` | no | `hd + sum tl` uses `+`, which forces `int` |
+
+`length` and `sum` are nearly identical code, yet one is generic and one is not. OCaml hands you genericity everywhere your code doesn't rule it out — you opt out by accident, not in by effort.
+
+There is a real payoff hiding in a generic signature. Because `zip` is fully generic in its elements, it is *incapable* of inspecting them — it cannot know what they are, so it can only move them around. Reading `'a list -> 'b list -> ('a * 'b) list`, you know before reading the body that it cannot compare, sum, or filter by element value. This property is called **parametricity**, and it makes generic signatures unusually informative about behavior.
+
+(If you later see `'_weak1`, with an underscore, that is *not* an ordinary type variable — it is a type OCaml has not pinned down yet and will not generalize. A different topic for another day.)
+
 ---
 
 ## Part 5 — Worked Example
@@ -271,6 +308,8 @@ It prints the puzzle's own sample answers, `7` and `5`, so you can confirm the l
 | Match shorthand | `function \| ...` | closure + `match` |
 | Missing case | warning 8, error under dune | compile error |
 | Unreachable case | warning 11 | unreachable-pattern lint |
+| Generic type param | `'a`, `'b` | `<T>`, `<A, B>` |
+| Lifetime | does not exist (GC) | `'a` |
 
 The habit to build: **let the shape of the data drive the shape of the code.** Two constructors means two branches, and the compiler will tell you when you've missed one.
 

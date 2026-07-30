@@ -7,3 +7,9 @@ let read_file path =
       really_input_string channel length)
 
 let nonempty_lines raw = raw |> String.split_on_char '\n' |> List.filter (fun line -> String.trim line <> "")
+
+(* Not here yet: a blank-line paragraph splitter, [chunks : string -> string list
+   list], for inputs that come in groups (AoC 2021 day 4's bingo boards, and
+   several later days). A working implementation lives in
+   tutorial/day4/example.ml -- promote it into this file on the first day that
+   actually needs it, rather than carrying an unused helper. *)

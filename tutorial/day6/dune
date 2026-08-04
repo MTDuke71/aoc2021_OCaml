@@ -1,0 +1,4 @@
+; Standalone teaching example — see tutorial/day1/dune for why this exists.
+
+(executable
+ (name example))
